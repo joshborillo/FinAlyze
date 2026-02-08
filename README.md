@@ -1,10 +1,7 @@
-# My Personal Project
+# FinAlyze
 
-## A subtitle
+## A personal finance tracker application
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+**FinAlyze reimagines the way you understand your money.** Log your day‑to‑day spending, categorize purchases effortlessly, track monthly patterns, and set smarter budget goals - all inside a clean, intuitive experience designed to put financial clarity in your hands.
 
-An example of text with **bold** and *italic* fonts.  
+As the platform evolves, FinAlyze will go beyond manual entry. You’ll be able to upload your monthly bank statements, categorize what it recognizes, and surface insights that highlight your habits and nudge you toward better decisions at month’s end. It’s personal finance, streamlined and future‑ready.
