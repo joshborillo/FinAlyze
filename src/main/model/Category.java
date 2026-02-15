@@ -9,7 +9,7 @@ public enum Category {
 
     // EFFECTS: constructs a Category with the given display name
     Category(String displayName) {
-        // stub
+        this.displayName = null; // stub
     }
 
     // EFFECTS: returns the display name of a category
