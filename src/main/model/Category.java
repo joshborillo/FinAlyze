@@ -3,7 +3,9 @@ package model;
 // Represents the fixed set of spending categories that an expense can belong to
 public enum Category {
 
-    FOOD("Food");
+    FOOD("Food"),
+    TRAVEL("Travel");
+
 
     private final String displayName;
 
