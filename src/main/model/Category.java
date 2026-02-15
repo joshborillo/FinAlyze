@@ -9,11 +9,11 @@ public enum Category {
 
     // EFFECTS: constructs a Category with the given display name
     Category(String displayName) {
-        this.displayName = null; // stub
+        this.displayName = displayName; // stub
     }
 
     // EFFECTS: returns the display name of a category
     public String getDisplayName() {
-        return null; // stub
+        return displayName; // stub
     }
 }
