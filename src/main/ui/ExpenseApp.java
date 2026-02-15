@@ -75,4 +75,29 @@ public class ExpenseApp {
 
         System.out.println("Expense added!");
     }
+
+    private void doRemoveExpense() {
+        // expenses list is empty
+        if (manager.getExpenses().isEmpty()) {
+            System.out.println("No expenses to remove.");
+            return;
+        }
+
+        System.out.println("Select an expense to remove:");
+        for (int i = 0; i < manager.getExpenses().size(); i++) {
+            Expense expense = manager.getExpenses().get(i);
+            System.out.println((i + 1) + ": " + expense.getItem() + "- $" + expense.getAmount());
+        }
+
+        System.out.print("> ");
+        int index = Integer.parseInt(input.nextLine()) - 1;
+
+        if (index >= 0 && index < manager.getExpenses().size()) {
+            Expense removed = manager.getExpenses().get(index);
+            manager.removeExpense(removed);
+            System.out.println("Expense removed!");
+        } else {
+            System.out.println("Invalid selection");
+        }
+    }
 }
