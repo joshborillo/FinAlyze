@@ -4,6 +4,7 @@ package model;
 public enum Category {
 
     FOOD("Food"),
+    SCHOOL("School"),
     TRAVEL("Travel");
 
 
