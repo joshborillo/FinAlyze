@@ -12,11 +12,11 @@ public enum Category {
 
     // EFFECTS: constructs a Category with the given display name
     Category(String displayName) {
-        this.displayName = displayName; // stub
+        this.displayName = displayName;
     }
 
     // EFFECTS: returns the display name of a category
     public String getDisplayName() {
-        return displayName; // stub
+        return displayName;
     }
 }

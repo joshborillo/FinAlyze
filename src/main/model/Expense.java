@@ -12,23 +12,33 @@ public class Expense {
     
     // EFFECTS: constructs an Expense with given item, amount, date, and category
     public Expense(String item, LocalDate date, double amount, Category category) {
-        // stub
+        this.item = item;
+        this.date = date;
+        this.amount = amount;
+        this.category = category;
     }
 
+    // REQUIRES: item is non-empty
+    // EFFECTS: returns the item name of this expense
     public String getItem() {
-        return null; // stub
+        return item;
     }
 
+    // REQUIRES: amount > 0
+    // EFFECTS: returns the amount of this expense
     public double getAmount() {
-        return 0; // stub
+        return amount;
     }
 
+    // REQUIRES: date is not null
+    // EFFECTS: returns the date of this expense
     public LocalDate getDate() {
-        return null;// stub
+        return date;
     }
 
+    // REQUIRES: category is not null
+    // EFFECTS: returns the category of this expense
     public Category getCategory() {
-        return null; // stub
+        return category;
     }
-
 }
