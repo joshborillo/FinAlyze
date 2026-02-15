@@ -26,6 +26,11 @@ public class MonthlySummary {
         return 0; // stub
     }
 
+    // EFFECTS: returns the map of category totals for this month
+    public Map<Category, Double> getCategoryTotals() {
+        return null;
+    }
+
     // EFFECTS: returns the month this summary represents
     public int getMonth() {
         return 0; // stub
