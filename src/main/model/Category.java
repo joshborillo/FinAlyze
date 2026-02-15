@@ -1,16 +1,19 @@
 package model;
 
-// Represents a spending category that an expense can belong to (ie. Food, Travel, Entertainment)
-public class Category {
-    private String name;
+// Represents the fixed set of spending categories that an expense can belong to
+public enum Category {
 
-    // EFFECTS: constructs a Category with given name
-    public Category(String name) {
+    FOOD("Food");
+
+    private final String displayName;
+
+    // EFFECTS: constructs a Category with the given display name
+    Category(String displayName) {
         // stub
     }
 
-    // EFFECTS: returns the name of this category
-    public String getName() {
+    // EFFECTS: returns the display name of a category
+    public String getDisplayName() {
         return null; // stub
     }
 }
