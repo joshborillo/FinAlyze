@@ -11,31 +11,45 @@ public class ExpenseManager {
 
     // EFFECTS: constructs an empty expense manager
     public ExpenseManager() {
-        // stub
+        expenses = new ArrayList<>();
     }
 
     // REQUIRES: expense > 0
     // MODIFIES: this
     // EFFECTS: adds the given expense to the list of expenses
     public void addExpense(Expense expense) {
-        // stub
+        expenses.add(expense);
     }
 
     // MODIFIES: this
     // EFFECTS: remove the given expense from the list of expenses
     public void removeExpense(Expense expense) {
-        // stub
+        expenses.remove(expense);
     }
 
     // REQUIRES: 1 <= month && month <= 12
     // EFFECTS: returns a MonthlySummary for the given month and year
     public MonthlySummary getMonthlySummary(int month, int year) {
-        return null; // stub
+        MonthlySummary summary = new MonthlySummary(month, year);
+
+        for (Expense expense : expenses) {
+            if (expense.getDate().getMonthValue() == month && expense.getDate().getYear() == year) {
+                summary.addExpense(expense.getCategory(), expense.getAmount());
+            }
+        }
+        return summary;
     }
 
     // EFFECTS: returns a CategorySummary for the given category
     public CategorySummary getCategorySummary(Category category) {
-        return null; // stub
+        CategorySummary summary = new CategorySummary(category);
+
+        for (Expense expense : expenses) {
+            if (expense.getCategory() == category) {
+                summary.addExpense(expense.getAmount());
+            }
+        }
+        return summary;
     }
 
 }

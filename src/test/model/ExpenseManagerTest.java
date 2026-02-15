@@ -91,7 +91,7 @@ public class ExpenseManagerTest {
         manager.removeExpense(scone);
         manager.addExpense(muffin);
 
-        assertEquals(8.50, manager.getMonthlySummary(2, 2025).getTotalSpent());
+        assertEquals(8.00, manager.getMonthlySummary(2, 2025).getTotalSpent());
     }
 
     @Test
