@@ -56,6 +56,7 @@ public class ExpenseManagerTest {
     @Test
     public void testAddExpensesDiffMonth() {
         manager.addExpense(coffee);
+        manager.addExpense(scone);
         manager.addExpense(uber);
 
         MonthlySummary february = manager.getMonthlySummary(2, 2025);
@@ -63,6 +64,34 @@ public class ExpenseManagerTest {
 
         assertEquals(9.50, february.getTotalSpent());
         assertEquals(20, march.getTotalSpent());
+    }
+
+    @Test
+    public void testRemoveExpense() {    
+        manager.addExpense(coffee);
+        manager.addExpense(scone);
+
+        MonthlySummary february = manager.getMonthlySummary(2, 2025);
+        assertEquals(9.50, february.getTotalSpent());
+
+        manager.removeExpense(scone);
+        assertEquals(4.50, manager.getMonthlySummary(2, 2025).getTotalSpent());
+    }
+
+    @Test
+    public void testRemoveAddExpense() {
+        Expense muffin = new Expense("Muffin", LocalDate.of(2025, 2, 14), 3.50, Category.FOOD);
+
+        manager.addExpense(coffee);
+        manager.addExpense(scone);
+
+        MonthlySummary february = manager.getMonthlySummary(2, 2025);
+        assertEquals(9.50, february.getTotalSpent());
+
+        manager.removeExpense(scone);
+        manager.addExpense(muffin);
+
+        assertEquals(8.50, manager.getMonthlySummary(2, 2025).getTotalSpent());
     }
 
     @Test

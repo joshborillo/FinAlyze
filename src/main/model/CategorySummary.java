@@ -9,29 +9,34 @@ public class CategorySummary {
 
     // EFFECTS: constrcuts a summary for a given category with zero spending and zero number of expenses
     public CategorySummary(Category category) {
-        // stub
+        this.category = category;
+        this.totalSpent = 0;
+        this.numExpenses = 0;
+
     }
 
     // REQUIRES: amount > 0
     // MODIFIES: this
     // EFFECTS: adds a given amount to the totalSpent and increments numExpenses
     public void addExpense(double amount) {
-        // stub
+        if (amount > 0) {
+            totalSpent += amount;
+            numExpenses++;
+        }
     }
 
     // EFFECTS: returns the category this summary is for
     public Category getCategory() {
-        return null; // stub
+        return category;
     }
 
     // EFFECTS: returns the total amount spent in this category
     public double getTotalSpent() {
-        return 0; // stub
+        return totalSpent;
     }
 
     // EFFECTS: returns the number of expenses in this category
     public int getNumExpenses() {
-        return 0; // stub
+        return numExpenses;
     }
-
 }

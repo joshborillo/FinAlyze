@@ -21,6 +21,12 @@ public class ExpenseManager {
         // stub
     }
 
+    // MODIFIES: this
+    // EFFECTS: remove the given expense from the list of expenses
+    public void removeExpense(Expense expense) {
+        // stub
+    }
+
     // REQUIRES: 1 <= month && month <= 12
     // EFFECTS: returns a MonthlySummary for the given month and year
     public MonthlySummary getMonthlySummary(int month, int year) {
