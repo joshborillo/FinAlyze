@@ -2,6 +2,9 @@ package ui;
 
 import model.*;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ExpenseApp {
@@ -50,11 +53,13 @@ public class ExpenseApp {
 
     private void printMenu() {
         System.out.print("\nSelect an option:");
-        System.out.print("1: Add an expense");
-        System.out.print("2: Remove an expense");
-        System.out.print("3: View monthly summary");
-        System.out.print("4: View category summary");
-        System.out.print("q: Quit");
+        System.out.print("\n1: Add an expense");
+        System.out.print("\n2: Remove an expense");
+        System.out.print("\n3: View monthly summary");
+        System.out.print("\n4: View category summary");
+        System.out.print("\nq: Quit");
+        System.out.print("\n");
+        System.out.print("\n>");
     }
 
     private void doAddExpense() {
@@ -110,14 +115,24 @@ public class ExpenseApp {
 
         MonthlySummary summary = manager.getMonthlySummary(month, year);
 
-        System.out.println("\nSummary for " + month + " " + year);
+        String monthName = Month.of(month).getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        System.out.println("\nSummary for " + monthName + " " + year);
         System.out.println("Total spent: $" + summary.getTotalSpent());
 
         System.out.println("By category: ");
         for (Category cat : summary.getCategoryTotals().keySet()) {
-            System.out.println(" " + cat + summary.getCategoryTotals().get(cat));
+            System.out.println(cat + " " +  summary.getCategoryTotals().get(cat));
         }
     }
 
+    private void doViewCategorySummary() {
+        System.out.print("Enter category: ");
+        Category category = Category.valueOf(input.nextLine().toUpperCase());
 
+        CategorySummary cs = manager.getCategorySummary(category);
+
+        System.out.println("\nCategory: " + category);
+        System.out.println("Total spent: $" + cs.getTotalSpent());
+        System.out.println("Number of expenses: " + cs.getNumExpenses());
+    }
 }

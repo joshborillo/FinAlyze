@@ -10,7 +10,7 @@ As the platform evolves, FinAlyze will go beyond manual entry. You’ll be able 
 
 1. As a user, I want to add an item expense on my monthly expenses.
 
-2. As a user, I want to subtract a portion of an expense item because it's not entirely groceries
+2. As a user, I want to subtract a portion of an expense item from a category.
 
 3. As a user, I want to remove an item I added two days ago because I got a refund.
 
