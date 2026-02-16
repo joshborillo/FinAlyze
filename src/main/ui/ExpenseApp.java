@@ -100,4 +100,24 @@ public class ExpenseApp {
             System.out.println("Invalid selection");
         }
     }
+
+    private void doViewMonthlySummary() {
+        System.out.print("Enter month (1-12): ");
+        int month = Integer.parseInt(input.nextLine());
+
+        System.out.print("Enter year: ");
+        int year = Integer.parseInt(input.nextLine());
+
+        MonthlySummary summary = manager.getMonthlySummary(month, year);
+
+        System.out.println("\nSummary for " + month + " " + year);
+        System.out.println("Total spent: $" + summary.getTotalSpent());
+
+        System.out.println("By category: ");
+        for (Category cat : summary.getCategoryTotals().keySet()) {
+            System.out.println(" " + cat + summary.getCategoryTotals().get(cat));
+        }
+    }
+
+
 }
