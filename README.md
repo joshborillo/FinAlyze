@@ -6,7 +6,7 @@
 
 As the platform evolves, FinAlyze will go beyond manual entry. You’ll be able to upload your monthly bank statements, categorize what it recognizes, and surface insights that highlight your habits and nudge you toward better decisions at month’s end. It’s personal finance, streamlined and future‑ready.
 
-## User Stories
+## User Stories (Phase 1)
 
 1. As a user, I want to add an item expense on my monthly expenses.
 
@@ -15,3 +15,11 @@ As the platform evolves, FinAlyze will go beyond manual entry. You’ll be able 
 3. As a user, I want to remove an item I added two days ago because I got a refund.
 
 4. As a user, I want to view the sum of all my expenses last month (or this month so far).
+
+## User Stories (Phase 2)
+
+1. As a user, when I select the quit option from the application menu, I want to be reminded to save my expense file and have the option to do so or not.
+
+2. As a user, when I start the application, I want to be given the option to load a previous expense file from file.
+
+

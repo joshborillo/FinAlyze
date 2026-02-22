@@ -18,7 +18,7 @@ public class ExpenseApp {
     }
 
     public void run() {
-        System.out.println("Welcome to your FinAlyze!");
+        System.out.println("Welcome to FinAlyze!");
 
         boolean running = true;
 
