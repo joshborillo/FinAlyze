@@ -41,4 +41,10 @@ public class Expense {
     public Category getCategory() {
         return category;
     }
+
+    // This method tells Java how to turn the object into readable text
+    @Override
+    public String toString() {
+        return item + " $" + amount;
+    }
 }
