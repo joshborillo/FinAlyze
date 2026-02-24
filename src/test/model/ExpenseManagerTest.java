@@ -1,5 +1,6 @@
 package model;
 
+import java.nio.file.FileVisitOption;
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -92,6 +93,18 @@ public class ExpenseManagerTest {
         manager.addExpense(muffin);
 
         assertEquals(8.00, manager.getMonthlySummary(2, 2025).getTotalSpent());
+    }
+
+    @Test
+    public void testRemoveExpenseFromCategory() {
+        manager.addExpense(coffee);
+        manager.addExpense(scone);
+        
+        MonthlySummary february = manager.getMonthlySummary(2, 2025);
+        assertEquals(9.50, february.getTotalSpent());
+
+        manager.removeExpenseFromCategory(scone, Category.FOOD);
+        assertEquals(4.50, manager.getCategorySummary(Category.FOOD).getTotalSpent());
     }
 
     @Test
