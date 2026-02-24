@@ -27,9 +27,29 @@ public class ExpenseManager {
         expenses.remove(expense);
     }
 
+    // MODIFIES: this
+    // EFFECTS: if expense is in the given category, remove it from the list of expenses
+    public void removeExpenseFromCategory(Expense expense, Category category) {
+        if (expense.getCategory() == category) {
+            expenses.remove(expense);
+        }
+    }
+
     // EFFECTS: returns list of expenses
     public List<Expense> getExpenses() {
         return expenses;
+    }
+
+    // EFFECTS: returns list of expenses in the given category
+    public List<Expense> getExpensesByCategory(Category category) {
+        List<Expense> filteredExpenses = new ArrayList<>();
+
+        for (Expense e : expenses) {
+            if (e.getCategory() == category) {
+                filteredExpenses.add(e);
+            }
+        }
+        return filteredExpenses;
     }
 
     // REQUIRES: 1 <= month && month <= 12
