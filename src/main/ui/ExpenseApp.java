@@ -4,6 +4,7 @@ import model.*;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -17,6 +18,7 @@ public class ExpenseApp {
         input = new Scanner(System.in);
     }
 
+    @SuppressWarnings("all")
     public void run() {
         System.out.println("Welcome to FinAlyze!");
 
@@ -82,27 +84,38 @@ public class ExpenseApp {
     }
 
     private void doRemoveExpense() {
-        // expenses list is empty
+        // expense list is empty
         if (manager.getExpenses().isEmpty()) {
             System.out.println("No expenses to remove.");
             return;
         }
 
-        System.out.println("Select an expense to remove:");
+        System.out.println("Select an expense to remove or '0' to return:");
         for (int i = 0; i < manager.getExpenses().size(); i++) {
             Expense expense = manager.getExpenses().get(i);
             System.out.println((i + 1) + ": " + expense.getItem() + "- $" + expense.getAmount());
         }
 
         System.out.print("> ");
-        int index = Integer.parseInt(input.nextLine()) - 1;
+        // parse input
+        int selection = Integer.parseInt(input.nextLine());
 
+        // handle "back"
+        if (selection == 0) {
+            System.out.println("Removal cancelled");
+            return;
+        }
+
+        // Adjust for 0-based indexing
+        int index = selection - 1;
+
+        // perform removal if valid
         if (index >= 0 && index < manager.getExpenses().size()) {
             Expense removed = manager.getExpenses().get(index);
             manager.removeExpense(removed);
-            System.out.println("Expense removed!");
+            System.out.println(removed.getItem() + " removed!");
         } else {
-            System.out.println("Invalid selection");
+            System.out.println("Invalid selection. Returning to menu");
         }
     }
 
@@ -133,6 +146,28 @@ public class ExpenseApp {
 
         System.out.println("\nCategory: " + category);
         System.out.println("Total spent: $" + cs.getTotalSpent());
-        System.out.println("Number of expenses: " + cs.getNumExpenses());
+        
+        List<Expense> filteredItems = manager.getExpensesByCategory(category);
+
+        if (filteredItems.isEmpty()) {
+            System.out.println("No expenses in this category.");
+            return;
+        }
+
+        System.out.println("List of items:");
+        for (int i = 0; i < filteredItems.size(); i++) {
+            System.out.println((i + 1) + ": " + filteredItems.get(i));
+        }
+        
+        // Give the user the option to remove an item in given category
+        System.out.println("\nEnter the number of an item to remove (or '0' to go back): ");
+        int choice = Integer.parseInt(input.nextLine());
+
+        if (choice > 0 && choice <= filteredItems.size()) {
+            Expense toRemove = filteredItems.get(choice - 1);
+
+            manager.removeExpense(toRemove);
+            System.out.println("Successfully removed: " + toRemove.getItem());
+        }
     }
 }
