@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+// Builds a list of expenses based on user input
 public class ExpenseApp {
     
     private ExpenseManager manager;
@@ -18,6 +19,7 @@ public class ExpenseApp {
         input = new Scanner(System.in);
     }
 
+    // EFFECTS: Starts the app, displays the main menu, and processes user input
     @SuppressWarnings("all")
     public void run() {
         System.out.println("Welcome to FinAlyze!");
@@ -53,6 +55,7 @@ public class ExpenseApp {
         System.out.println("Thanks for using FinAlyze!");
     }
 
+    // EFFECTS: Diplays the list of available commands (add, remove, view summary) to console
     private void printMenu() {
         System.out.print("\nSelect an option:");
         System.out.print("\n1: Add an expense");
@@ -64,6 +67,8 @@ public class ExpenseApp {
         System.out.print("\n>");
     }
 
+    // MODIFIES: this, manager
+    // EFFECTS: Prompts user for item details, constructs a new Expense then adds it to the manager
     private void doAddExpense() {
         System.out.println("Enter item name: ");
         String item = input.nextLine();
@@ -83,6 +88,9 @@ public class ExpenseApp {
         System.out.println("Expense added!");
     }
 
+    // MODIFIES: this, manager
+    // EFFECTS: Displays a numbered list of all expenses; prompts user for an index and removes the correspondig expense
+    //          If list is empty, go back
     private void doRemoveExpense() {
         // expense list is empty
         if (manager.getExpenses().isEmpty()) {
@@ -119,6 +127,8 @@ public class ExpenseApp {
         }
     }
 
+    // EFFECTS: prompts the user for a month and year,
+    // then displays the total spending and category breakdon for the period
     private void doViewMonthlySummary() {
         System.out.print("Enter month (1-12): ");
         int month = Integer.parseInt(input.nextLine());
@@ -138,6 +148,8 @@ public class ExpenseApp {
         }
     }
 
+    // EFFECTS: prompts user for a category name, and displays the total spent and number of items
+    //          user is then given the option to remove an item from the category, or return
     private void doViewCategorySummary() {
         System.out.print("Enter category: ");
         Category category = Category.valueOf(input.nextLine().toUpperCase());
@@ -146,6 +158,7 @@ public class ExpenseApp {
 
         System.out.println("\nCategory: " + category);
         System.out.println("Total spent: $" + cs.getTotalSpent());
+        System.out.println("Total number of items: " + cs.getNumExpenses());
         
         List<Expense> filteredItems = manager.getExpensesByCategory(category);
 
