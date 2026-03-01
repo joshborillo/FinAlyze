@@ -54,6 +54,9 @@ public class ExpenseApp {
                 case "4":
                     doViewCategorySummary();
                     break;
+                case "p":
+                    printExpenses();
+                    break;
                 case "s":
                     saveManager();
                     break;
@@ -78,6 +81,7 @@ public class ExpenseApp {
         System.out.print("\n2: Remove an expense");
         System.out.print("\n3: View monthly summary");
         System.out.print("\n4: View category summary");
+        System.out.print("\np: Print list of expenses");
         System.out.print("\ns: Save manager to file");
         System.out.print("\nl: Load manager from file");
         System.out.print("\nq: Quit");
@@ -199,6 +203,15 @@ public class ExpenseApp {
 
             manager.removeExpense(toRemove);
             System.out.println("Successfully removed: " + toRemove.getItem());
+        }
+    }
+
+    // EFFECTS: prints all the expense items in the expense manager to the console
+    private void printExpenses() {
+        List<Expense> expenses = manager.getExpenses();
+
+        for (Expense e : expenses) {
+            System.out.println(e);
         }
     }
     
