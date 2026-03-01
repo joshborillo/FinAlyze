@@ -19,7 +19,6 @@ import org.json.*;
 */
 
 // Represents a reader that reads ExpenseManager from JSON data stored in file
-
 public class JsonReader {
     private String source;
 

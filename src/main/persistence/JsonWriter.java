@@ -4,6 +4,12 @@ import model.ExpenseManager;
 import org.json.JSONObject;
 import java.io.*;
 
+/*
+ CITATION: This class was adapted from the CPSC210's JsonSerializationDemo repo
+ Source: https://github.com/stleary/JSON-java
+*/
+
+// Represents a writer that writes ExpenseManager from Java to JSON data
 public class JsonWriter {
 
     private static final int TAB = 4;
