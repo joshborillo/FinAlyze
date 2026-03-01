@@ -68,6 +68,13 @@ public class ExpenseManagerTest {
     }
 
     @Test
+    public void testGetNumExpenses() {
+        manager.addExpense(coffee);
+        manager.addExpense(scone);
+        assertEquals(2, manager.getNumExpenses());
+    }
+
+    @Test
     public void testRemoveExpense() {    
         manager.addExpense(coffee);
         manager.addExpense(scone);

@@ -51,6 +51,11 @@ public class ExpenseManager implements Writable {
         return Collections.unmodifiableList(expenses);
     }
 
+    // EFFECTS: returns number of expenses in this ExpenseManager
+    public int getNumExpenses() {
+        return expenses.size();
+    }
+
     // EFFECTS: returns list of expenses in the given category
     public List<Expense> getExpensesByCategory(Category category) {
         List<Expense> filteredExpenses = new ArrayList<>();
