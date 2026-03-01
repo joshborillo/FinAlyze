@@ -34,4 +34,11 @@ public class ExpenseTest {
         assertEquals(Category.FOOD, expense.getCategory());
     }
 
+    @Test
+    void testGetDisplayName() {
+        assertEquals("Food", Category.FOOD.getDisplayName());
+        assertEquals("School", Category.SCHOOL.getDisplayName());
+        assertEquals("Travel", Category.TRAVEL.getDisplayName());
+    }
+
 }

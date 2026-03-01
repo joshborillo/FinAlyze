@@ -43,4 +43,13 @@ public class CategorySummaryTest {
         assertEquals(2, summary.getNumExpenses());
     }
 
+    @Test
+    public void testExpenseAmountZero() {
+        Expense freeCookie = new Expense("cookie", LocalDate.of(2026,02,14), 0, Category.FOOD);
+        summary.addExpense(freeCookie.getAmount());
+
+        assertEquals(0, summary.getTotalSpent());
+        assertEquals(0, summary.getNumExpenses());
+    }
+
 }
