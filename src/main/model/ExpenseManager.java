@@ -1,17 +1,28 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 // Manages a collection of expenses and provides operations
 // for adding expenses and generating summaries
-public class ExpenseManager {
+public class ExpenseManager implements Writable {
 
+    private String name;
     private List<Expense> expenses;
 
     // EFFECTS: constructs an empty expense manager
-    public ExpenseManager() {
+    public ExpenseManager(String name) {
+        this.name = name;
         expenses = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     // REQUIRES: expense > 0
@@ -37,7 +48,7 @@ public class ExpenseManager {
 
     // EFFECTS: returns list of expenses
     public List<Expense> getExpenses() {
-        return expenses;
+        return Collections.unmodifiableList(expenses);
     }
 
     // EFFECTS: returns list of expenses in the given category
@@ -77,4 +88,22 @@ public class ExpenseManager {
         return summary;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("expenses", expensesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray expensesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Expense e : expenses) {
+            jsonArray.put(e.toJson());
+        }
+
+        return jsonArray;
+    }
 }
