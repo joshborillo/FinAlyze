@@ -1,6 +1,12 @@
 package ui;
 
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
 import model.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
@@ -10,17 +16,21 @@ import java.util.Scanner;
 
 // Builds a list of expenses based on user input
 public class ExpenseApp {
-    
-    private ExpenseManager manager;
+    private static final String JSON_STORE = "./data/manager.json";    
     private Scanner input;
+    private ExpenseManager manager;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    public ExpenseApp() {
-        manager = new ExpenseManager();
+    public ExpenseApp() throws FileNotFoundException {
         input = new Scanner(System.in);
+        manager = new ExpenseManager("User's Expense List");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // EFFECTS: Starts the app, displays the main menu, and processes user input
-    @SuppressWarnings("all")
+    @SuppressWarnings("methodLength")
     public void run() {
         System.out.println("Welcome to FinAlyze!");
 
@@ -44,6 +54,12 @@ public class ExpenseApp {
                 case "4":
                     doViewCategorySummary();
                     break;
+                case "s":
+                    saveManager();
+                    break;
+                case "l":
+                    loadManager();
+                    break;
                 case "q":
                     running = false;
                     break;
@@ -62,6 +78,8 @@ public class ExpenseApp {
         System.out.print("\n2: Remove an expense");
         System.out.print("\n3: View monthly summary");
         System.out.print("\n4: View category summary");
+        System.out.print("\ns: Save manager to file");
+        System.out.print("\nl: Load manager from file");
         System.out.print("\nq: Quit");
         System.out.print("\n");
         System.out.print("\n>");
@@ -183,4 +201,28 @@ public class ExpenseApp {
             System.out.println("Successfully removed: " + toRemove.getItem());
         }
     }
+    
+    // EFFECTS: saves the manager to file
+    private void saveManager() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(manager);
+            jsonWriter.close();
+            System.out.println("Saved " + manager.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads manager from file
+    private void loadManager() {
+        try {
+            manager = jsonReader.read();
+            System.out.println("Loaded " + manager.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
 }
