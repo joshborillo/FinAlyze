@@ -16,7 +16,7 @@ public class ExpenseManagerTest {
 
     @BeforeEach
     public void setup() {
-        manager = new ExpenseManager();
+        manager = new ExpenseManager("User's Expense List");
         coffee = new Expense("Coffee", LocalDate.of(2025,2,14), 4.50, Category.FOOD);
         scone = new Expense("scone", LocalDate.of(2025,2,14), 5.00, Category.FOOD);
         uber = new Expense("Uber", LocalDate.of(2025, 3, 20), 20, Category.TRAVEL);

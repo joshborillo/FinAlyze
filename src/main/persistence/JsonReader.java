@@ -66,7 +66,7 @@ public class JsonReader {
     }
 
     // MODIFIES: em
-    // EFFECTS: parses expense from JSON object and adds it to workroom
+    // EFFECTS: parses expense from JSON object and adds it to manager
     private void addExpense(ExpenseManager em, JSONObject jsonObject) {
         String item = jsonObject.getString("name");
         LocalDate date = LocalDate.parse(jsonObject.getString("date"));
