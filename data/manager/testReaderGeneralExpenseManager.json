@@ -1,0 +1,17 @@
+{
+    "name": "User's Expense List",
+    "expenses": [
+        {
+            "name": "coffee",
+            "amount": 3.5,
+            "date": "2026-02-28",
+            "category": "FOOD"
+        },
+        {
+            "name": "textbook",
+            "amount": 100.0,
+            "date": "2026-03-01",
+            "category": "SCHOOL"
+        }
+    ]
+}

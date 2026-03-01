@@ -1,7 +1,7 @@
 package persistence;
 
-import model.Expense;
 import model.Category;
+import model.Expense;
 import model.ExpenseManager;
 
 import java.io.IOException;
