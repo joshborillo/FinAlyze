@@ -30,7 +30,7 @@ public class ExpenseApp {
     }
 
     // EFFECTS: Starts the app, displays the main menu, and processes user input
-    @SuppressWarnings("methodLength")
+    @SuppressWarnings("MethodLengthCheck")
     public void run() {
         System.out.println("Welcome to FinAlyze!");
 
