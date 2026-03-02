@@ -1,7 +1,11 @@
 package model;
 
+import model.Expense;
 import java.nio.file.FileVisitOption;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -68,6 +72,14 @@ public class ExpenseManagerTest {
     }
 
     @Test
+    public void testGetIncorrectMonthSummary() {
+        manager.addExpense(coffee);
+
+        MonthlySummary summary = manager.getMonthlySummary(3, 2025);
+        assertEquals(0.0, summary.getTotalSpent());
+    }
+
+    @Test
     public void testGetNumExpenses() {
         manager.addExpense(coffee);
         manager.addExpense(scone);
@@ -115,6 +127,18 @@ public class ExpenseManagerTest {
     }
 
     @Test
+    public void testRemoveExpenseFromIncorrectCategory() {
+        manager.addExpense(coffee);
+        manager.addExpense(scone);
+        
+        MonthlySummary february = manager.getMonthlySummary(2, 2025);
+        assertEquals(9.50, february.getTotalSpent());
+
+        manager.removeExpenseFromCategory(scone, Category.TRAVEL);
+        assertEquals(9.50, manager.getCategorySummary(Category.FOOD).getTotalSpent());
+    }
+
+    @Test
     public void testGetCategorySummary() {
         Expense sandwich = new Expense("Sandwich", LocalDate.of(2025, 4, 2), 10, Category.FOOD);
 
@@ -135,4 +159,31 @@ public class ExpenseManagerTest {
         assertEquals(0, cs.getNumExpenses());
     }
 
+    @Test
+    public void testGetExpensesByCategory() {
+        Expense sandwich = new Expense("Sandwich", LocalDate.of(2025, 4, 2), 10, Category.FOOD);
+
+        manager.addExpense(coffee);
+        manager.addExpense(sandwich);
+
+        CategorySummary cs = manager.getCategorySummary(Category.FOOD);
+
+        assertEquals(14.50, cs.getTotalSpent());
+        assertEquals(2, cs.getNumExpenses());
+        assertEquals(List.of(coffee, sandwich), manager.getExpensesByCategory(Category.FOOD));
+    }
+
+        @Test
+    public void testGetExpensesByIncorrectCategory() {
+        Expense sandwich = new Expense("Sandwich", LocalDate.of(2025, 4, 2), 10, Category.FOOD);
+
+        manager.addExpense(coffee);
+        manager.addExpense(sandwich);
+
+        CategorySummary cs = manager.getCategorySummary(Category.TRAVEL);
+
+        assertEquals(0.0, cs.getTotalSpent());
+        assertEquals(0, cs.getNumExpenses());
+        assertEquals(List.of(), manager.getExpensesByCategory(Category.TRAVEL));
+    }
 }
