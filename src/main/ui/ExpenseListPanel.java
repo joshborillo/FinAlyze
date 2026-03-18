@@ -2,10 +2,9 @@ package ui;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.time.LocalDate;
-import java.util.Locale.Category;
+import model.Category;
 
 /*
 Represents a panel that displays all tracked expenses in a JTable.
@@ -21,7 +20,7 @@ public class ExpenseListPanel extends JPanel {
         setLayout(new BorderLayout());
 
         // columns
-        String[] columnNames = {"Item", "Expense ($)", "Date", "Category"};
+        String[] columnNames = {"Item", "Date", "Expense ($)", "Category"};
 
         // inititialze model and table
         model = new DefaultTableModel(columnNames, 0);
@@ -36,8 +35,8 @@ public class ExpenseListPanel extends JPanel {
     }
 
     // add expense to the GUI
-    public void addExpenseToTable(String item, double amount, Category category, LocalDate date) {
-        Object[] row = {item, amount, category, date};
+    public void addExpenseToTable(String item, LocalDate date, double amount, Category category) {
+        Object[] row = {item, date, amount, category};
         model.addRow(row);
     }
 }
