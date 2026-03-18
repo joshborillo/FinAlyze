@@ -15,8 +15,9 @@ public class GUI extends JFrame {
     public GUI() {
         super("FinAlyze");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(600, 400);
-        setLayout(new BorderLayout());
+        setSize(700, 500);
+        
+        setJMenuBar(createMenuBar());
 
         // initialize custom table panel
         tablePanel = new ExpenseListPanel();
@@ -26,5 +27,28 @@ public class GUI extends JFrame {
         add(addButton, BorderLayout.SOUTH);
 
         setVisible(true);
+    }
+
+    private JMenuBar createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+
+        // File
+        JMenu fileMenu = new JMenu("File");
+        JMenu reportMenu = new JMenu("Analze");
+
+        JMenuItem saveItem = new JMenuItem("Save Data");
+        JMenuItem loadItem = new JMenuItem("Load Data");
+        JMenuItem categorySummary = new JMenuItem("Category Summary");
+        JMenuItem monthlyCategorySummary = new JMenuItem("Monthly Category Summary");
+
+        fileMenu.add(saveItem);
+        fileMenu.add(loadItem);
+        reportMenu.add(categorySummary);
+        reportMenu.add(monthlyCategorySummary);
+
+        menuBar.add(fileMenu);
+        menuBar.add(reportMenu);
+        
+        return menuBar;
     }
 }
