@@ -19,7 +19,7 @@ public class AddExpenseDialog extends JDialog {
     public AddExpenseDialog(JFrame parent) {
         super(parent, "Add Multiple Expenses", true);
         setLayout(new BorderLayout());
-        setSize(500, 400);
+        setSize(400, 400);
         newExpenses = new ArrayList<>();
 
         // Setup
@@ -30,6 +30,7 @@ public class AddExpenseDialog extends JDialog {
         JTextField amountField = new JTextField();
         JComboBox<Category> categoryBox = new JComboBox<>(Category.values());
         JButton addToListButton = new JButton("Add to List");
+        JButton confirmButton = new JButton("Confirm All and Close");
 
         inputPanel.add(new JLabel("Item:"));
         inputPanel.add(itemField);
@@ -39,13 +40,12 @@ public class AddExpenseDialog extends JDialog {
         inputPanel.add(amountField);
         inputPanel.add(new JLabel("Category:"));
         inputPanel.add(categoryBox);
+        inputPanel.add(new JLabel("Add Item"));
+        inputPanel.add(addToListButton);
 
         // Staging Table
         stagingModel = new DefaultTableModel(new String[] {"Item", "Amount", "Date", "Category"}, 0);
         stagingTable = new JTable(stagingModel);
-
-        // "Add to List" button
-        JButton confirmButton = new JButton("Confirm All and Close");
 
         addToListButton.addActionListener(e -> {
             try {
